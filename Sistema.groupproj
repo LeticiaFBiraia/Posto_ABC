@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{E7674DB8-D81C-4DDA-8157-99AB97F62156}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="SistemaPosto.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Teste\SistemaPostoTeste.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="SistemaPosto">
+        <MSBuild Projects="SistemaPosto.dproj"/>
+    </Target>
+    <Target Name="SistemaPosto:Clean">
+        <MSBuild Projects="SistemaPosto.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="SistemaPosto:Make">
+        <MSBuild Projects="SistemaPosto.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="SistemaPostoTeste">
+        <MSBuild Projects="Teste\SistemaPostoTeste.dproj"/>
+    </Target>
+    <Target Name="SistemaPostoTeste:Clean">
+        <MSBuild Projects="Teste\SistemaPostoTeste.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="SistemaPostoTeste:Make">
+        <MSBuild Projects="Teste\SistemaPostoTeste.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="SistemaPosto;SistemaPostoTeste"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="SistemaPosto:Clean;SistemaPostoTeste:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="SistemaPosto:Make;SistemaPostoTeste:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
